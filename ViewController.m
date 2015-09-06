@@ -21,66 +21,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view
-    
-    /*
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [button setTitle:@"Press Me" forState:UIControlStateNormal];
-    [button sizeToFit];
-    
-    
-    // Set a new (x,y) point for the button's center
-    button.center = CGPointMake(320/2, 60);
-    
-    
-    // Add an action in current code file (i.e. target)
-    [button addTarget:self action:@selector(buttonPressed:)
-     forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    [self.view addSubview:button];
-    */
-    
-    //MOST RECENT
-    /*
-    self.data = [NSMutableArray array];
-    self.sdArray = [NSMutableArray array];
-    self.sigmas = [NSMutableArray array];
-    //sd = 0;
-    counter = 0;
-    THRESHOLD = 0.01;
-    apneaCounter = 0;
-    isApp = false;
-
-    
-    self.motionManager = [[CMMotionManager alloc] init];
-    self.motionManager.accelerometerUpdateInterval = .2;
-    self.motionManager.gyroUpdateInterval = .2;
-    
-    [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
-                                             withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-        [self outputAccelertionData:accelerometerData.acceleration];
-                                                 if(error){
-                                                     
-                                                     NSLog(@"hey %@", error);
-                                                 }
-    }];
-    
-    */
-    
-    //MOST RECENT
-    
 }
-
-/*
-- (void)buttonPressed:(UIButton *)button {
-    NSLog(@"Button Pressed");
-}
-*/
-
-
 
 - (IBAction)start:(id)sender{
+    self.stopButton.hidden = NO;
+    self.startButton.hidden = YES;
     isEnd = false;
 self.data = [NSMutableArray array];
 self.sdArray = [NSMutableArray array];
@@ -106,17 +51,25 @@ self.motionManager.gyroUpdateInterval = .2;
                                              }];
     
     
-    int min = (int)(counter / 5 % 60);
-    int hours = (counter / 5 % 3600);
-    self.time.text = [NSString stringWithFormat:@"%d hrs %d min", hours, min];
-    //self.ahi.text = [NSString stringWithFormat:@"%d", apneaCounter];
+    
 
 
 }
 
 
 - (IBAction)end:(id)sender{
+    self.stopButton.hidden = YES;
+    self.resultsView.hidden = NO;
     isEnd = true;
+    //int sec = counter/5;
+    //int min = (int)(sec % 60);
+    //int hours = (int)(sec / 3600);
+    //int remainSec = sec % 3600;
+    //int min = remainSec / 60;
+    //int finalSec = min % 60;
+    //self.time.text = [NSString stringWithFormat:@"%.2d h %d m", hours, min];
+    self.ahi.text = [NSString stringWithFormat:@"%d", apneaCounter];
+    //NSLog(@"H: %.2d M: %d S: %d", hours, min, finalSec);
 
 }
 
@@ -191,5 +144,11 @@ self.motionManager.gyroUpdateInterval = .2;
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)reset:(id)sender {
+    self.resultsView.hidden = YES;
+    self.startButton.hidden = NO;
+
 }
 @end

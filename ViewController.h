@@ -16,11 +16,18 @@ Boolean isApp,isEnd;
 
 @property (strong, nonatomic) CMMotionManager *motionManager;
 
+@property (weak, nonatomic) IBOutlet UIButton *startButton;
+@property (weak, nonatomic) IBOutlet UIButton *stopButton;
+@property (weak, nonatomic) IBOutlet UIButton *resetButton;
 
 - (IBAction)start:(id)sender;
 - (IBAction)end:(id)sender;
+@property (weak, nonatomic) IBOutlet UIView *resultsView;
 
-@property (weak, nonatomic) IBOutlet UILabel *time;
+- (IBAction)reset:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *ahi;
 
 //@property (weak, nonatomic) IBOutlet UILabel *ahi;
 
