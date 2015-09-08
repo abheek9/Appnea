@@ -22,6 +22,12 @@
     [super viewDidLoad];
 }
 
+/*
+* This is the method intiated when the user clicks the start button
+* It changes the views in the story board appropriately and then starts
+* Logging the acceleration data for the user
+*/
+
 - (IBAction)start:(id)sender{
     self.stopButton.hidden = NO;
     self.startButton.hidden = YES;
@@ -48,6 +54,12 @@
             }];
 }
 
+
+/*
+* The end function is iniated when the user hits the stop button it 
+* changes the view, and then logs the results to the results page
+*
+*/
 
 - (IBAction)end:(id)sender{
     self.stopButton.hidden = YES;
@@ -126,7 +138,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (IBAction)reset:(id)sender {
