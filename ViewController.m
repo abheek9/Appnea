@@ -1,6 +1,5 @@
 //
 //  ViewController.m
-//  GyrosAndAccelerometers
 
 
 #import "ViewController.h"
@@ -27,25 +26,24 @@
     self.stopButton.hidden = NO;
     self.startButton.hidden = YES;
     isEnd = false;
-self.data = [NSMutableArray array];
-self.sdArray = [NSMutableArray array];
-self.sigmas = [NSMutableArray array];
+    self.data = [NSMutableArray array];
+    self.sdArray = [NSMutableArray array];
+    self.sigmas = [NSMutableArray array];
 
-counter = 0;
-THRESHOLD = 0.01;
-apneaCounter = 0;
-isApp = false;
+    counter = 0;
+    THRESHOLD = 0.01;
+    apneaCounter = 0;
+    isApp = false;
+
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.motionManager.accelerometerUpdateInterval = .2;
+    self.motionManager.gyroUpdateInterval = .2;
     
-    
-self.motionManager = [[CMMotionManager alloc] init];
-self.motionManager.accelerometerUpdateInterval = .2;
-self.motionManager.gyroUpdateInterval = .2;
-    
-[self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
-    withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-        [self outputAccelertionData:accelerometerData.acceleration];
-            if(error){
-                NSLog(@"hey %@", error);
+    [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
+        withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+            [self outputAccelertionData:accelerometerData.acceleration];
+                if(error){
+                    NSLog(@"hey %@", error);
                 }
             }];
 }
@@ -134,6 +132,5 @@ self.motionManager.gyroUpdateInterval = .2;
 - (IBAction)reset:(id)sender {
     self.resultsView.hidden = YES;
     self.startButton.hidden = NO;
-
 }
 @end
