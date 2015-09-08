@@ -42,18 +42,12 @@ self.motionManager.accelerometerUpdateInterval = .2;
 self.motionManager.gyroUpdateInterval = .2;
     
 [self.motionManager startAccelerometerUpdatesToQueue:[NSOperationQueue currentQueue]
-                                             withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
-                                                 [self outputAccelertionData:accelerometerData.acceleration];
-                                                 if(error){
-                                                     
-                                                     NSLog(@"hey %@", error);
-                                                 }
-                                             }];
-    
-    
-    
-
-
+    withHandler:^(CMAccelerometerData *accelerometerData, NSError *error) {
+        [self outputAccelertionData:accelerometerData.acceleration];
+            if(error){
+                NSLog(@"hey %@", error);
+                }
+            }];
 }
 
 
@@ -61,16 +55,7 @@ self.motionManager.gyroUpdateInterval = .2;
     self.stopButton.hidden = YES;
     self.resultsView.hidden = NO;
     isEnd = true;
-    //int sec = counter/5;
-    //int min = (int)(sec % 60);
-    //int hours = (int)(sec / 3600);
-    //int remainSec = sec % 3600;
-    //int min = remainSec / 60;
-    //int finalSec = min % 60;
-    //self.time.text = [NSString stringWithFormat:@"%.2d h %d m", hours, min];
     self.ahi.text = [NSString stringWithFormat:@"%d", apneaCounter];
-    //NSLog(@"H: %.2d M: %d S: %d", hours, min, finalSec);
-
 }
 
 -(void)outputAccelertionData:(CMAcceleration)acceleration
